@@ -10,6 +10,11 @@ a {
 .navbar {
     overflow: hidden;
     background-color: #333;
+    overflow: hidden;
+    background-color: #333; /* Background color of the navbar */
+    position: fixed; /* Fixed position at the top */
+    width: 100%; /* Full width */
+    top: 0; /* Positioned at the top */
 }
 
 .navbar a {
