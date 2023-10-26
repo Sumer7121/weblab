@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/login'); 
+var loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -22,7 +22,31 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login', loginRouter);
+
+// Handle GET request for the login page
+app.get('/login', (req, res) => {
+  res.render('login'); // Render the login.ejs view
+});
+
+// Handle POST request for the login form
+app.post('/login', (req, res) => {
+  // Here, you can handle the login logic and authentication
+  const { username, password } = req.body;
+
+  // Perform authentication checks, e.g., validate username and password
+
+  // If authentication is successful, redirect to the main page
+  if (username === 'admin' && password === 'admin123') {
+    res.redirect('/index');
+  } else {
+    res.send('Invalid credentials'); // Render an error message if authentication fails
+  }
+});
+
+// Define a route for the main page
+app.get('/index', (req, res) => {
+  res.render('index'); // Render the index.ejs view
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

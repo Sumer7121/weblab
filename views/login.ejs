@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <div class="login-container">
       <h2>Login</h2>
-      <form>
-        <input type="text" placeholder="Username" name="username">
-        <input type="password" placeholder="Password" name="password">
-        <a href="/"></a><button type="submit">Log In</button></a>
+      <form action="/login" method="POST">
+        <input type="text" placeholder="Username" name="username" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <button type="submit">Log In</button>
       </form>
-  </div>
+    </div>
   </body>
 </html>
