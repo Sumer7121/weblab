@@ -48,6 +48,11 @@ app.get('/index', (req, res) => {
   res.render('index'); // Render the index.ejs view
 });
 
+// Define a route for the create-patient page
+app.get('/create-patient', (req, res) => {
+  res.render('create-patient'); // Render the create-patient.ejs view
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
