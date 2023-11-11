@@ -4,11 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const mongoose = require('mongoose')
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 
 var app = express();
+
+mongoose.connect('mongodb+srv://webLab:Suralu33322@weblab.qojan6v.mongodb.net/patientsApp')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
