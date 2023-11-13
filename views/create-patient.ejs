@@ -1,3 +1,5 @@
+<!-- views/create-patient.ejs -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,17 +15,48 @@
     </div>
     <div class="container">
       <h2>Create Patient</h2>
-      <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+      <form action="/create-patient" method="post"> <!-- Updated form action -->
+        <label for="CreatorId">Creator ID:</label>
+        <input type="text" id="CreatorId" name="CreatorId" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <label for="CreatorName">Creator Name:</label>
+        <input type="text" id="CreatorName" name="CreatorName" required>
 
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required>
+        <label for="FirstName">First Name:</label>
+        <input type="text" id="FirstName" name="FirstName" required>
 
-        <!-- Add more form fields as needed -->
+        <label for="LastName">Last Name:</label>
+        <input type="text" id="LastName" name="LastName" required>
+
+        <label for="Birthdate">Birthdate:</label>
+        <input type="date" id="Birthdate" name="Birthdate" required>
+
+        <label for="Zipcode">Zipcode:</label>
+        <input type="text" id="Zipcode" name="Zipcode" required>
+
+        <label for="State">State:</label>
+        <input type="text" id="State" name="State" required>
+
+        <label for="PhoneNumber">Phone Number:</label>
+        <input type="tel" id="PhoneNumber" name="PhoneNumber" required>
+
+        <label for="CreateDate">Create Date:</label>
+        <input type="date" id="CreateDate" name="CreateDate" required>
+
+        <label for="InsuranceType">Insurance Type:</label>
+        <input type="text" id="InsuranceType" name="InsuranceType" required>
+
+        <label for="TestType">Test Type:</label>
+        <input type="text" id="TestType" name="TestType" required>
+
+        <label for="DoctorService">Doctor Service:</label>
+        <input type="text" id="DoctorService" name="DoctorService" required>
+
+        <label for="LabName">Lab Name:</label>
+        <input type="text" id="LabName" name="LabName" required>
+
+        <label for="SampleStatus">Sample Status:</label>
+        <input type="text" id="SampleStatus" name="SampleStatus" required>
 
         <button type="submit">Submit</button>
       </form>
