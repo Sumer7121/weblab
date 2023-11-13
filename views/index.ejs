@@ -31,6 +31,7 @@
           <th>Doctor Service</th>
           <th>Lab Name</th>
           <th>Sample Status</th>
+          <th>Action</th> <!-- Add a new column for the action buttons -->
         </tr>
       </thead>
       <tbody>
@@ -49,6 +50,10 @@
             <td><%= patient.DoctorService %></td>
             <td><%= patient.LabName %></td>
             <td><%= patient.SampleStatus %></td>
+            <td>
+              <a href="/edit-patient/<%= patient.id %>" class="btn btn-primary">Edit</a>
+              <a href="/delete-patient/<%= patient.id %>" class="btn btn-danger">Delete</a>
+            </td>
           </tr>
         <% }); %>
       </tbody>
