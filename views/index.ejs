@@ -1,39 +1,11 @@
+<!-- index.ejs -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Patient</title>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel='stylesheet' href='/stylesheets/style.css' />
-  <style>
-    body {
-      padding: 20px;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa; /* Background color */
-    }
-
-    .container {
-      margin-top: 20px;
-    }
-
-    table {
-      width: 100%;
-      margin-top: 20px;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #007bff;
-      color: #fff;
-    }
-  </style>
 </head>
 <body>
   <div class="navbar">
@@ -41,16 +13,11 @@
     <a href="/create-patient">Create Patient</a>
     <a href="/login">Log Out</a>
   </div>
-
   <div class="container">
-    <h2>Create Patient</h2>
-    <!-- Add your content for the Create Patient page here -->
-
-    <!-- CRUD Grid -->
-    <table>
+    <h1 class="mt-4">Patient Details</h1>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>Creator ID</th>
           <th>Creator Name</th>
           <th>First Name</th>
           <th>Last Name</th>
@@ -64,40 +31,30 @@
           <th>Doctor Service</th>
           <th>Lab Name</th>
           <th>Sample Status</th>
-          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Example data, replace with actual data from your server -->
-        <% const patients = [
-          { CreatorId: '1', CreatorName: 'John Doe', FirstName: 'Alice', LastName: 'Smith', Birthdate: '1990-01-01', Zipcode: '12345', State: 'California', PhoneNumber: '555-1234', CreateDate: '2023-11-10', InsuranceType: 'Health Insurance', TestType: 'Blood Test', DoctorService: 'General Check-up', LabName: 'ABC Lab', SampleStatus: 'Pending' },
-          { CreatorId: '2', CreatorName: 'Jane Doe', FirstName: 'Bob', LastName: 'Johnson', Birthdate: '1985-05-20', Zipcode: '54321', State: 'New York', PhoneNumber: '555-5678', CreateDate: '2023-11-11', InsuranceType: 'Life Insurance', TestType: 'X-ray', DoctorService: 'Specialized Exam', LabName: 'XYZ Lab', SampleStatus: 'Completed' }
-        ]; %>
-
-        <% patients.forEach(patient => { %>
+        <% patients.forEach(function(patient) { %>
           <tr>
-            <td><%= patient.CreatorId %></td>
             <td><%= patient.CreatorName %></td>
             <td><%= patient.FirstName %></td>
             <td><%= patient.LastName %></td>
-            <td><%= patient.Birthdate %></td>
+            <td><%= patient.Birthdate.toISOString().slice(0, 10) %></td>
             <td><%= patient.Zipcode %></td>
             <td><%= patient.State %></td>
             <td><%= patient.PhoneNumber %></td>
-            <td><%= patient.CreateDate %></td>
+            <td><%= patient.CreateDate.toISOString().slice(0, 10) %></td>
             <td><%= patient.InsuranceType %></td>
             <td><%= patient.TestType %></td>
             <td><%= patient.DoctorService %></td>
             <td><%= patient.LabName %></td>
             <td><%= patient.SampleStatus %></td>
-            <td>
-              <button class="btn btn-warning btn-sm">Edit</button>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
           </tr>
         <% }); %>
       </tbody>
     </table>
   </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
