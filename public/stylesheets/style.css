@@ -48,3 +48,51 @@ body {
   padding-top: 70px;
   margin: 0; /* Add this line to remove the default body margin */
 }
+
+.login-container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  color: #333;
+}
+
+.login-container form input,
+.login-container form button {
+  display: block;
+  margin-bottom: 10px;
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  color: #555;
+}
+
+.login-container form button {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.login-container form button:hover {
+  background-color: #45a049;
+}
+
+.login-container .toggle-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login-container .toggle-link a {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
