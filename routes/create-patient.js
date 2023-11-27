@@ -1,10 +1,10 @@
-// routes/create-patients.js
 const express = require('express');
 const router = express.Router();
-const Patient = require('../models/patient'); // Adjust the path based on your project structure
+const Patient = require('../models/patients'); // Adjust the path based on your project structure
+const authMiddleware = require('../middlewares/authMiddleware'); // Add the authMiddleware import
 
 // Handle GET request for the create-patient page
-router.get('/create-patient', (req, res) => {
+router.get('/', (req, res) => {
   res.render('create-patient'); // Render the create-patient.ejs view
 });
 
@@ -16,10 +16,8 @@ router.get('/details', authMiddleware.ensureAuthenticated, function(req, res, ne
   res.render('patients/details');
 });
 
-module.exports = router;
-
 // Handle POST request for creating a new patient
-router.post('/create-patient', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     // Extract data from the form
     const {
