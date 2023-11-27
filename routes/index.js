@@ -1,6 +1,21 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const Patient = require('../models/patients');
+const mongoose = require('mongoose');
+
+// Connect to MongoDB using the MONGODB_URI environment variable
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('Failed to connect to MongoDB', err);
+    process.exit(1);
+  });
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -17,15 +32,14 @@ router.get('/login', function(req, res) {
   res.render('login', { title: 'Login' });
 });
 
-
-// POST route to handle patient deletion with confirmation prompt
+/* POST route to handle patient deletion with confirmation prompt */
 router.post('/delete-patient/:id', async function(req, res, next) {
   const patientId = req.params.id;
-  
+
   try {
     await Patient.findByIdAndDelete(patientId);
     console.log('Patient deleted successfully');
-    
+
     // Reload the page after deleting
     res.redirect('/');
   } catch (err) {
@@ -33,7 +47,7 @@ router.post('/delete-patient/:id', async function(req, res, next) {
   }
 });
 
-// GET route to render the create/edit-patient form
+/* GET route to render the create/edit-patient form */
 router.get('/edit-patient/:id', async function(req, res, next) {
   const patientId = req.params.id;
   try {
@@ -50,7 +64,7 @@ router.get('/edit-patient/:id', async function(req, res, next) {
   }
 });
 
-// POST route to handle both create and edit patient
+/* POST route to handle both creating and editing patients */
 router.post('/edit-patient', async function(req, res, next) {
   try {
     const {
