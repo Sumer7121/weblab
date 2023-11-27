@@ -17,49 +17,49 @@
       <h2><%= title %></h2>
       <form action="/edit-patient" method="post">
         <!-- Hidden input for patientId -->
-        <input type="hidden" name="patientId" value="<%= patient._id || '' %>">
+        <input type="hidden" name="patientId" value="<%= patient ? patient._id || '' : '' %>">
 
         <label for="CreatorId">Creator ID:</label>
-        <input type="text" id="CreatorId" name="CreatorId" value="<%= patient.CreatorId || '' %>" required>
+        <input type="text" id="CreatorId" name="CreatorId" value="<%= patient ? patient.CreatorId || '' : '' %>" required>
 
         <label for="CreatorName">Creator Name:</label>
-        <input type="text" id="CreatorName" name="CreatorName" value="<%= patient.CreatorName || '' %>" required>
+        <input type="text" id="CreatorName" name="CreatorName" value="<%= patient ? patient.CreatorName || '' : '' %>" required>
 
         <label for="FirstName">First Name:</label>
-        <input type="text" id="FirstName" name="FirstName" value="<%= patient.FirstName || '' %>" required>
+        <input type="text" id="FirstName" name="FirstName" value="<%= patient ? patient.FirstName || '' : '' %>" required>
 
         <label for="LastName">Last Name:</label>
-        <input type="text" id="LastName" name="LastName" value="<%= patient.LastName || '' %>" required>
+        <input type="text" id="LastName" name="LastName" value="<%= patient ? patient.LastName || '' : '' %>" required>
 
         <label for="Birthdate">Birthdate:</label>
-        <input type="date" id="Birthdate" name="Birthdate" value="<%= patient.Birthdate ? patient.Birthdate.toISOString().slice(0, 10) : '' %>" required>
+        <input type="date" id="Birthdate" name="Birthdate" value="<%= patient ? (patient.Birthdate ? patient.Birthdate.toISOString().slice(0, 10) : '') : '' %>" required>
 
         <label for="Zipcode">Zipcode:</label>
-        <input type="text" id="Zipcode" name="Zipcode" value="<%= patient.Zipcode || '' %>" required>
+        <input type="text" id="Zipcode" name="Zipcode" value="<%= patient ? patient.Zipcode || '' : '' %>" required>
 
         <label for="State">State:</label>
-        <input type="text" id="State" name="State" value="<%= patient.State || '' %>" required>
+        <input type="text" id="State" name="State" value="<%= patient ? patient.State || '' : '' %>" required>
 
         <label for="PhoneNumber">Phone Number:</label>
-        <input type="tel" id="PhoneNumber" name="PhoneNumber" value="<%= patient.PhoneNumber || '' %>" required>
+        <input type="tel" id="PhoneNumber" name="PhoneNumber" value="<%= patient ? patient.PhoneNumber || '' : '' %>" required>
 
         <label for="CreateDate">Create Date:</label>
-        <input type="date" id="CreateDate" name="CreateDate" value="<%= patient.CreateDate ? patient.CreateDate.toISOString().slice(0, 10) : '' %>" required>
+        <input type="date" id="CreateDate" name="CreateDate" value="<%= patient ? (patient.CreateDate ? patient.CreateDate.toISOString().slice(0, 10) : '') : '' %>" required>
 
         <label for="InsuranceType">Insurance Type:</label>
-        <input type="text" id="InsuranceType" name="InsuranceType" value="<%= patient.InsuranceType || '' %>" required>
+        <input type="text" id="InsuranceType" name="InsuranceType" value="<%= patient ? patient.InsuranceType || '' : '' %>" required>
 
         <label for="TestType">Test Type:</label>
-        <input type="text" id="TestType" name="TestType" value="<%= patient.TestType || '' %>" required>
+        <input type="text" id="TestType" name="TestType" value="<%= patient ? patient.TestType || '' : '' %>" required>
 
         <label for="DoctorService">Doctor Service:</label>
-        <input type="text" id="DoctorService" name="DoctorService" value="<%= patient.DoctorService || '' %>" required>
+        <input type="text" id="DoctorService" name="DoctorService" value="<%= patient ? patient.DoctorService || '' : '' %>" required>
 
         <label for="LabName">Lab Name:</label>
-        <input type="text" id="LabName" name="LabName" value="<%= patient.LabName || '' %>" required>
+        <input type="text" id="LabName" name="LabName" value="<%= patient ? patient.LabName || '' : '' %>" required>
 
         <label for="SampleStatus">Sample Status:</label>
-        <input type="text" id="SampleStatus" name="SampleStatus" value="<%= patient.SampleStatus || '' %>" required>
+        <input type="text" id="SampleStatus" name="SampleStatus" value="<%= patient ? patient.SampleStatus || '' : '' %>" required>
 
         <button type="submit">Submit</button>
       </form>
