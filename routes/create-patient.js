@@ -58,11 +58,11 @@ router.post('/', async (req, res) => {
     // Save the patient to the database
     await newPatient.save();
 
-    res.send('New patient created successfully');
+    // Redirect to the index route after creating a patient
+    res.redirect('/'); // Adjust the route based on your project structure
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
   }
 });
-
 module.exports = router;
