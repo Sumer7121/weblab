@@ -1,25 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const Patient = require('../models/patients'); // Adjust the path based on your project structure
-const authMiddleware = require('../middlewares/authMiddleware'); // Add the authMiddleware import
+const Patient = require('../models/patients');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 // Handle GET request for the create-patient page
-router.get('/', (req, res) => {
-  res.render('create-patient'); // Render the create-patient.ejs view
-});
-
-router.get('/create', authMiddleware.ensureAuthenticated, function(req, res, next) {
-  res.render('patients/create');
-});
-
-router.get('/details', authMiddleware.ensureAuthenticated, function(req, res, next) {
-  res.render('patients/details');
-});
-
-// Handle POST request for creating a new patient
-router.post('/', async (req, res) => {
+router.get('/create-patient', async function(req, res, next) {
   try {
-    // Extract data from the form
+    // Assuming you have logic to retrieve patient data, replace this with your actual logic
+    const patient = await getPatientDataSomehow();
+
+    // Render the create-patient view with the existing patient data
+    res.render('create-patient', { title: 'Create Patient', patient });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Handle POST request for creating a new patient or editing an existing one
+router.post('/edit-patient', async function(req, res, next) {
+  try {
     const {
       CreatorId,
       CreatorName,
@@ -37,32 +36,52 @@ router.post('/', async (req, res) => {
       SampleStatus,
     } = req.body;
 
-    // Create a new patient instance
-    const newPatient = new Patient({
-      CreatorId,
-      CreatorName,
-      FirstName,
-      LastName,
-      Birthdate,
-      Zipcode,
-      State,
-      PhoneNumber,
-      CreateDate,
-      InsuranceType,
-      TestType,
-      DoctorService,
-      LabName,
-      SampleStatus,
-    });
+    const patientId = req.body.patientId;
 
-    // Save the patient to the database
-    await newPatient.save();
+    if (patientId) {
+      // Edit existing patient
+      await Patient.findByIdAndUpdate(patientId, {
+        CreatorId,
+        CreatorName,
+        FirstName,
+        LastName,
+        Birthdate,
+        Zipcode,
+        State,
+        PhoneNumber,
+        CreateDate,
+        InsuranceType,
+        TestType,
+        DoctorService,
+        LabName,
+        SampleStatus,
+      });
+    } else {
+      // Create new patient
+      const newPatient = new Patient({
+        CreatorId,
+        CreatorName,
+        FirstName,
+        LastName,
+        Birthdate,
+        Zipcode,
+        State,
+        PhoneNumber,
+        CreateDate,
+        InsuranceType,
+        TestType,
+        DoctorService,
+        LabName,
+        SampleStatus,
+      });
 
-    // Redirect to the index route after creating a patient
-    res.redirect('/'); // Adjust the route based on your project structure
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
+      await newPatient.save();
+    }
+
+    res.redirect('/');
+  } catch (err) {
+    next(err);
   }
 });
+
 module.exports = router;

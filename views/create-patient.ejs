@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Create Patient</title>
+    <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/create-patient.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
@@ -14,49 +14,52 @@
       <a href="/login">Log Out</a>
     </div>
     <div class="container">
-      <h2>Create Patient</h2>
-      <form action="/create-patient" method="post"> <!-- Updated form action -->
+      <h2><%= title %></h2>
+      <form action="/edit-patient" method="post">
+        <!-- Hidden input for patientId -->
+        <input type="hidden" name="patientId" value="<%= patient._id || '' %>">
+
         <label for="CreatorId">Creator ID:</label>
-        <input type="text" id="CreatorId" name="CreatorId" required>
+        <input type="text" id="CreatorId" name="CreatorId" value="<%= patient.CreatorId || '' %>" required>
 
         <label for="CreatorName">Creator Name:</label>
-        <input type="text" id="CreatorName" name="CreatorName" required>
+        <input type="text" id="CreatorName" name="CreatorName" value="<%= patient.CreatorName || '' %>" required>
 
         <label for="FirstName">First Name:</label>
-        <input type="text" id="FirstName" name="FirstName" required>
+        <input type="text" id="FirstName" name="FirstName" value="<%= patient.FirstName || '' %>" required>
 
         <label for="LastName">Last Name:</label>
-        <input type="text" id="LastName" name="LastName" required>
+        <input type="text" id="LastName" name="LastName" value="<%= patient.LastName || '' %>" required>
 
         <label for="Birthdate">Birthdate:</label>
-        <input type="date" id="Birthdate" name="Birthdate" required>
+        <input type="date" id="Birthdate" name="Birthdate" value="<%= patient.Birthdate ? patient.Birthdate.toISOString().slice(0, 10) : '' %>" required>
 
         <label for="Zipcode">Zipcode:</label>
-        <input type="text" id="Zipcode" name="Zipcode" required>
+        <input type="text" id="Zipcode" name="Zipcode" value="<%= patient.Zipcode || '' %>" required>
 
         <label for="State">State:</label>
-        <input type="text" id="State" name="State" required>
+        <input type="text" id="State" name="State" value="<%= patient.State || '' %>" required>
 
         <label for="PhoneNumber">Phone Number:</label>
-        <input type="tel" id="PhoneNumber" name="PhoneNumber" required>
+        <input type="tel" id="PhoneNumber" name="PhoneNumber" value="<%= patient.PhoneNumber || '' %>" required>
 
         <label for="CreateDate">Create Date:</label>
-        <input type="date" id="CreateDate" name="CreateDate" required>
+        <input type="date" id="CreateDate" name="CreateDate" value="<%= patient.CreateDate ? patient.CreateDate.toISOString().slice(0, 10) : '' %>" required>
 
         <label for="InsuranceType">Insurance Type:</label>
-        <input type="text" id="InsuranceType" name="InsuranceType" required>
+        <input type="text" id="InsuranceType" name="InsuranceType" value="<%= patient.InsuranceType || '' %>" required>
 
         <label for="TestType">Test Type:</label>
-        <input type="text" id="TestType" name="TestType" required>
+        <input type="text" id="TestType" name="TestType" value="<%= patient.TestType || '' %>" required>
 
         <label for="DoctorService">Doctor Service:</label>
-        <input type="text" id="DoctorService" name="DoctorService" required>
+        <input type="text" id="DoctorService" name="DoctorService" value="<%= patient.DoctorService || '' %>" required>
 
         <label for="LabName">Lab Name:</label>
-        <input type="text" id="LabName" name="LabName" required>
+        <input type="text" id="LabName" name="LabName" value="<%= patient.LabName || '' %>" required>
 
         <label for="SampleStatus">Sample Status:</label>
-        <input type="text" id="SampleStatus" name="SampleStatus" required>
+        <input type="text" id="SampleStatus" name="SampleStatus" value="<%= patient.SampleStatus || '' %>" required>
 
         <button type="submit">Submit</button>
       </form>
