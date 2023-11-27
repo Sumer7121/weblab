@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const Patient = require('../models/patients');
@@ -30,6 +29,18 @@ router.get('/', async function(req, res, next) {
 /* GET login page. */
 router.get('/login', function(req, res) {
   res.render('login', { title: 'Login' });
+});
+
+/* POST route to handle login */
+router.post('/login', function(req, res) {
+  const { username, password } = req.body;
+
+  // Perform authentication checks, e.g., validate username and password
+  if (username === 'admin' && password === 'admin123') {
+    res.redirect('/'); // Redirect to the main page if login is successful
+  } else {
+    res.render('login', { title: 'Login', error: 'Invalid credentials' });
+  }
 });
 
 /* POST route to handle patient deletion with confirmation prompt */
