@@ -16,7 +16,7 @@ router.get('/', async function(req, res, next) {
 router.post('/delete-patient/:id', async function(req, res, next) {
   const patientId = req.params.id;
   try {
-    await Patient.findOneAndDelete(patientId);
+    await Patient.findByIdAndDelete(patientId);
     console.log('Patient deleted successfully');
     res.redirect('/');
   } catch (err) {
