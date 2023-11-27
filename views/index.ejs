@@ -31,7 +31,7 @@
           <th>Doctor Service</th>
           <th>Lab Name</th>
           <th>Sample Status</th>
-          <th>Action</th> <!-- Add a new column for the action buttons -->
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -51,8 +51,10 @@
             <td><%= patient.LabName %></td>
             <td><%= patient.SampleStatus %></td>
             <td>
-              <a href="/edit-patient/<%= patient.id %>" class="btn btn-primary">Edit</a>
-              <a href="/delete-patient/<%= patient.id %>" class="btn btn-danger">Delete</a>
+              <form action="/delete-patient/<%= patient._id %>" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+              <a href="/edit-patient/<%= patient._id %>" class="btn btn-primary">Edit</a>
             </td>
           </tr>
         <% }); %>
