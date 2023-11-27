@@ -1,5 +1,3 @@
-<!-- index.ejs -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,8 +49,9 @@
             <td><%= patient.LabName %></td>
             <td><%= patient.SampleStatus %></td>
             <td>
-              <form action="/delete-patient/<%= patient._id %>" method="POST" class="d-inline">
-                <button type="submit" class="btn btn-danger">Delete</button>
+              <form id="deleteForm<%= patient._id %>" action="/delete-patient/<%= patient._id %>" method="POST" class="d-inline">
+                <!-- Adding an "onclick" attribute to show a confirmation dialog -->
+                <button type="button" class="btn btn-danger" onclick="confirmDeletion('<%= patient._id %>')">Delete</button>
               </form>
               <a href="/edit-patient/<%= patient._id %>" class="btn btn-primary">Edit</a>
             </td>
@@ -63,5 +62,18 @@
   </div>
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Adding a script for the confirmation dialog -->
+  <script>
+    function confirmDeletion(patientId) {
+      // Display a confirmation dialog
+      var isConfirmed = confirm('Are you sure you want to delete this patient?');
+
+      // If the user confirms, submit the form for deletion
+      if (isConfirmed) {
+        document.getElementById('deleteForm' + patientId).submit();
+      }
+    }
+  </script>
 </body>
 </html>

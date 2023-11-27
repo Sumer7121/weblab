@@ -12,18 +12,20 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-// POST route to handle patient deletion
+// POST route to handle patient deletion with confirmation prompt
 router.post('/delete-patient/:id', async function(req, res, next) {
   const patientId = req.params.id;
+  
   try {
     await Patient.findByIdAndDelete(patientId);
     console.log('Patient deleted successfully');
+    
+    // Reload the page after deleting
     res.redirect('/');
   } catch (err) {
     next(err);
   }
 });
-
 
 // GET route to render the create/edit-patient form
 router.get('/edit-patient/:id', async function(req, res, next) {
