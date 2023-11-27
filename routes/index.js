@@ -12,6 +12,12 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+/* GET login page. */
+router.get('/login', function(req, res) {
+  res.render('login', { title: 'Login' });
+});
+
+
 // POST route to handle patient deletion with confirmation prompt
 router.post('/delete-patient/:id', async function(req, res, next) {
   const patientId = req.params.id;
