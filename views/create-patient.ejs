@@ -59,7 +59,11 @@
         <input type="text" id="LabName" name="LabName" value="<%= patient ? patient.LabName || '' : '' %>" required>
 
         <label for="SampleStatus">Sample Status:</label>
-        <input type="text" id="SampleStatus" name="SampleStatus" value="<%= patient ? patient.SampleStatus || '' : '' %>" required>
+        <select id="SampleStatus" name="SampleStatus" required>
+          <option value="reviewed" <%= (patient && patient.SampleStatus === 'reviewed') ? 'selected' : '' %>>reviewed</option>
+          <option value="under review" <%= (patient && patient.SampleStatus === 'under review') ? 'selected' : '' %>>under review</option>
+          <option value="not reviewed" <%= (patient && patient.SampleStatus === 'not reviewed') ? 'selected' : '' %>>not reviewed</option>
+        </select>
 
         <button type="submit">Submit</button>
       </form>

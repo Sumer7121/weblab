@@ -47,7 +47,17 @@
             <td><%= patient.TestType %></td>
             <td><%= patient.DoctorService %></td>
             <td><%= patient.LabName %></td>
-            <td><%= patient.SampleStatus %></td>
+            <td>
+              <!-- Adding conditional styling based on Sample Status -->
+              <% if (patient.SampleStatus === 'reviewed') { %>
+                <span style="color: green; font-size: 20px;">&#11044;</span>
+              <% } else if (patient.SampleStatus === 'under review') { %>
+                <span style="color: orange; font-size: 20px;">&#11044;</span>
+              <% } else if (patient.SampleStatus === 'not reviewed') { %>
+                <span style="color: red; font-size: 20px;">&#11044;</span>
+              <% } %>
+              <%= patient.SampleStatus %>
+            </td>
             <td>
               <form id="deleteForm<%= patient._id %>" action="/delete-patient/<%= patient._id %>" method="POST" class="d-inline">
                 <!-- Adding an "onclick" attribute to show a confirmation dialog -->
