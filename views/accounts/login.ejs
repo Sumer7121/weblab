@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Login</title>
+  <!-- Add Bootstrap CSS link -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Add your custom style.css -->
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
-<body>
-  <div class="login-container">
-    <h2 id="form-title">Login</h2>
-    <form id="login-form" action="/login" method="POST">
-      <input type="text" placeholder="Username" name="username" required />
-      <input type="password" placeholder="Password" name="password" required />
-      <button type="submit">Log In</button>
-    </form>
-    <form id="signup-form" action="/signup" method="POST" style="display: none;">
-      <input type="text" placeholder="Name" name="name" required />
-      <input type="email" placeholder="Email" name="email" required />
-      <input type="text" placeholder="Username" name="username" required />
-      <select name="role" required>
-        <option value="" disabled selected>Select Role</option>
-        <option value="data-entry">Data Entry Specialist</option>
-        <option value="admin">Admin</option>
-        <option value="quality-control">Quality Control</option>
-      </select>
-      <input type="password" placeholder="Password" name="password" required />
-      <input type="password" placeholder="Confirm Password" name="confirmPassword" required />
-      <button type="submit">Sign Up</button>
-    </form>
-    <div class="toggle-link">
-      <a href="#" onclick="toggleForm()">Don't have an account? Sign up</a>
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center mb-4 animated fadeInDown">Login</h2>
+            <form id="login-form" action="/login" method="POST">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <button type="submit" class="btn btn-success btn-block animated pulse">Log In</button>
+            </form>
+            <div class="text-center mt-3">
+              <p class="text-muted animated fadeIn">Don't have an account? <a href="#" onclick="toggleForm()">Sign up</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     function toggleForm() {
       const loginForm = document.getElementById('login-form');
-      const signupForm = document.getElementById('signup-form');
-      const formTitle = document.getElementById('form-title');
-
-      if (loginForm.style.display === 'none') {
-        loginForm.style.display = 'block';
-        signupForm.style.display = 'none';
-        formTitle.textContent = 'Login';
-      } else {
-        loginForm.style.display = 'none';
-        signupForm.style.display = 'block';
-        formTitle.textContent = 'Sign Up';
-      }
+      loginForm.reset(); // Reset the form when switching to sign up
     }
   </script>
+
+  <!-- Add Bootstrap JS and Popper.js scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

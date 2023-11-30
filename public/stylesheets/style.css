@@ -43,82 +43,97 @@ a {
   background-color: #ddd;
   color: black;
 }
-
 body {
-  padding-top: 70px;
-  margin: 0; /* Add this line to remove the default body margin */
+  padding: 50px;
+  font: 14px "Helvetica", Arial, sans-serif;
 }
 
-.login-container {
-  max-width: 300px;
-  margin: 0 auto;
+.container {
+  margin-top: 20px;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.login-container h2 {
-  text-align: center;
+.card-title {
   color: #333;
 }
 
-.login-container form input,
-.login-container form button {
-  display: block;
-  margin-bottom: 10px;
-  width: 95%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 16px;
-  color: #555;
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
-.login-container form button {
+label {
+  font-weight: bold;
+}
+
+.btn-success {
   background-color: #4CAF50;
   color: white;
-  cursor: pointer;
 }
 
-.login-container form button:hover {
+.btn-success:hover {
   background-color: #45a049;
 }
 
-.login-container .toggle-link {
+.text-center {
   text-align: center;
   margin-top: 10px;
 }
 
-.login-container .toggle-link a {
-  color: blue;
-  text-decoration: underline;
-  cursor: pointer;
+.text-muted {
+  color: #888;
 }
 
-/* Add styling for the new "role" dropdown */
-.login-container form select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 16px;
-  color: #555;
+.animated {
+  animation-duration: 0.8s;
 }
 
-/* Style the dropdown arrow */
-.login-container form select::after {
-  content: '\25BC';
-  position: absolute;
-  top: 30%;
-  right: 10px;
-  pointer-events: none;
+.fadeInDown {
+  animation-name: fadeInDown;
 }
 
-/* Style the options in the dropdown */
-.login-container form select option {
-  background-color: #f9f9f9;
-  color: #333;
+.pulse {
+  animation-name: pulse;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
