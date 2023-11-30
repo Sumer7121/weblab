@@ -5,14 +5,28 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const createError = require('http-errors'); // Import the createError function
 require('dotenv').config(); // Load environment variables from .env file
+var passport = require('passport');
+var flash    = require('connect-flash');
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var createPatientRouter = require('./routes/create-patient');
+var accountsRouter = require('./routes/accounts');
 
 var app = express();
 
+app.use(bodyParser.urlencoded({
+    extended: true,
+  }));
+  app.use(bodyParser.json());
+  var session      = require('express-session');
+
+require('./config/passport')(passport);
+ 
+app.use(cookieParser()); // read cookies (needed for auth)
+  
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -31,10 +45,29 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: 'devkey',
+  resave: true,
+  saveUninitialized: true,
+}));
+  
+app.use(passport.initialize());
+app.use(passport.session()); 
+app.use(flash()); 
+ 
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+  
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter); // Mount the loginRouter at the /login path
 app.use('/create-patient', createPatientRouter);
+app.use('/accounts', accountsRouter);
+
+
 
 app.use(function (req, res, next) {
   next(createError(404)); // Create and pass the 404 error to the error handler
