@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Patient = require('../models/patients');
 const mongoose = require('mongoose');
+const authMiddleware = require('../middleware/auth');
 
 // Connect to MongoDB using the MONGODB_URI environment variable
 mongoose.connect(process.env.MONGODB_URI, {
@@ -17,7 +18,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   });
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
+router.get('/', authMiddleware.ensureAuthenticated, async function(req, res, next) {
   try {
     const patients = await Patient.find();
     res.render('index', { title: 'Express', patients });
@@ -27,20 +28,13 @@ router.get('/', async function(req, res, next) {
 });
 
 /* GET login page. */
-router.get('/login', function(req, res) {
+router.get('/login', authMiddleware.ensureAuthenticated, function(req, res) {
   res.render('login', { title: 'Login' });
 });
 
 /* POST route to handle login */
 router.post('/login', function(req, res) {
   const { username, password } = req.body;
-
-  // Perform authentication checks, e.g., validate username and password
-  if (username === 'admin' && password === 'admin123') {
-    res.redirect('/'); // Redirect to the main page if login is successful
-  } else {
-    res.render('login', { title: 'Login', error: 'Invalid credentials' });
-  }
 });
 
 /* POST route to handle patient deletion with confirmation prompt */
@@ -59,7 +53,7 @@ router.post('/delete-patient/:id', async function(req, res, next) {
 });
 
 /* GET route to render the create/edit-patient form */
-router.get('/edit-patient/:id', async function(req, res, next) {
+router.get('/edit-patient/:id', authMiddleware.ensureAuthenticated, async function(req, res, next) {
   const patientId = req.params.id;
   try {
     // If patientId is provided, it's an edit operation

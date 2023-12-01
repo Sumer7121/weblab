@@ -5,7 +5,7 @@ const Patient = require('../models/patients'); // Adjust the path based on your 
 const authMiddleware = require('../middlewares/authMiddleware');
 
 // Handle GET request for the create-patient page
-router.get('/', function(req, res, next) {
+router.get('/', authMiddleware.ensureAuthenticated, function(req, res, next) {
   try {
     // No need to retrieve patient data for creating a new patient
     const patient = null; // Or you can set it to an empty object: {}
