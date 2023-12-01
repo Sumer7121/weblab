@@ -1,0 +1,100 @@
+/* /public/stylesheets/users.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0; /* Add margin 0 to remove default body margin */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.col-sm-6 {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    z-index: 1; /* Add a z-index to the signup form */
+}
+
+.navbar {
+    z-index: 2; /* Ensure the navbar has a higher z-index */
+}
+
+h1 {
+    text-align: center;
+    color: #343a40;
+}
+
+.fa-sign-in {
+    margin-right: 8px;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #343a40;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #ffc107;
+    color: #343a40;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffca2c;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ced4da;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+p {
+    text-align: center;
+    color: #6c757d;
+}
+
+a {
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #0056b3;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+    .col-sm-6 {
+        width: 100%;
+    }
+}
