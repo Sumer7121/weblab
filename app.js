@@ -11,7 +11,6 @@ var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/login');
 var createPatientRouter = require('./routes/create-patient');
 var accountsRouter = require('./routes/accounts');
 
@@ -63,7 +62,6 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login', loginRouter); // Mount the loginRouter at the /login path
 app.use('/create-patient', createPatientRouter);
 app.use('/accounts', accountsRouter);
 
