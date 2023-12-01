@@ -11,6 +11,9 @@
     <div class="navbar">
       <a href="/">Home Page</a>
       <a href="/create-patient">Create Patient</a>
+      <% if(locals.user && locals.user.role === 'Admin') { %>
+        <a class="nav-link" href="/accounts/signup">Users</a>
+      <% } %>
       <a href="/accounts/login">Log Out</a>
     </div>
     <div class="container">

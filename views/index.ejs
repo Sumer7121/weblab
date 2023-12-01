@@ -8,8 +8,12 @@
 <body>
   <div class="navbar">
     <a href="/">Home Page</a>
-    <a href="/create-patient">Create Patient</a>
-    <a href="/accounts/signup">User</a>
+    <% if(locals.user && (locals.user.role === 'Admin' || locals.user.role === 'Data entry specialist')) { %>
+      <a class="nav-link" href="/create-patient">Create Patient</a>
+    <% } %>
+    <% if(locals.user && locals.user.role === 'Admin') { %>
+      <a class="nav-link" href="/accounts/signup">Users</a>
+    <% } %>
     <a href="/accounts/login">Log Out</a>
   </div>
   <div class="container">
@@ -30,7 +34,6 @@
           <th>Doctor Service</th>
           <th>Lab Name</th>
           <th>Sample Status</th>
-          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -60,11 +63,13 @@
               <%= patient.SampleStatus %>
             </td>
             <td>
-              <form id="deleteForm<%= patient._id %>" action="/delete-patient/<%= patient._id %>" method="POST" class="d-inline">
-                <!-- Adding an "onclick" attribute to show a confirmation dialog -->
-                <button type="button" class="btn btn-danger" onclick="confirmDeletion('<%= patient._id %>')">Delete</button>
-              </form>
-              <a href="/edit-patient/<%= patient._id %>" class="btn btn-primary">Edit</a>
+              <% if (locals.user && (locals.user.role === 'Admin' || locals.user.role === 'Data entry specialist')) { %>
+                <form id="deleteForm<%= patient._id %>" action="/delete-patient/<%= patient._id %>" method="POST" class="d-inline">
+                  <!-- Adding an "onclick" attribute to show a confirmation dialog -->
+                  <button type="button" class="btn btn-danger" onclick="confirmDeletion('<%= patient._id %>')">Delete</button>
+                </form>
+                <a href="/edit-patient/<%= patient._id %>" class="btn btn-primary">Edit</a>
+              <% } %>
             </td>
           </tr>
         <% }); %>
