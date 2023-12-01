@@ -1,11 +1,35 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-lC+JuoU1psLUn9upKxjTqFsv3agPPkODD1VlXbu2KxOO2rtW2IfyZn3EcV2OIlU7"
+        crossorigin="anonymous">
+
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="/stylesheets/users.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
 
 <body>
+    <div class="navbar">
+        <a href="/">Home Page</a>
+        <a href="/create-patient">Create Patient</a>
+        <a href="/accounts/signup">Users</a>
+        <a href="/accounts/login">Log Out</a>
+    </div>
     <div class="container">
-
-        <div class="col-sm-6 col-sm-offset-3">
-
+        <div class="col-sm-6">
             <h1><span class="fa fa-sign-in"></span> Signup</h1>
 
             <!-- show any messages that come back with authentication -->
@@ -40,6 +64,17 @@
             <p>Already have an account? <a href="/accounts/login">Login</a></p>
         </div>
     </div>
+
+    <!-- Bootstrap JS and Popper.js (if needed) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
