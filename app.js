@@ -3,29 +3,26 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-const createError = require('http-errors'); // Import the createError function
-require('dotenv').config(); // Load environment variables from .env file
-var passport = require('passport');
-var flash    = require('connect-flash');
-var bodyParser = require('body-parser');
+const createError = require('http-errors');
+require('dotenv').config();
+const passport = require('passport');
+const flash = require('connect-flash');
+const bodyParser = require('body-parser');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var createPatientRouter = require('./routes/create-patient');
-var accountsRouter = require('./routes/accounts');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const createPatientRouter = require('./routes/create-patient');
+const accountsRouter = require('./routes/accounts');
 
-var app = express();
+const app = express();
 
-app.use(bodyParser.urlencoded({
-    extended: true,
-  }));
-  app.use(bodyParser.json());
-  var session      = require('express-session');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+const session = require('express-session');
 
 require('./config/passport')(passport);
- 
-app.use(cookieParser()); // read cookies (needed for auth)
-  
+
+app.use(cookieParser());
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -44,31 +41,30 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-  secret: 'devkey',
-  resave: true,
-  saveUninitialized: true,
-}));
-  
+app.use(
+  session({
+    secret: 'devkey',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
 app.use(passport.initialize());
-app.use(passport.session()); 
-app.use(flash()); 
- 
-app.use(function (req, res, next) {
-  res.locals.user = req.user;
-  next();
+app.use(passport.session());
+app.use(flash());
+
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
 });
-  
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/create-patient', createPatientRouter);
 app.use('/accounts', accountsRouter);
 
-
-
 app.use(function (req, res, next) {
-  next(createError(404)); // Create and pass the 404 error to the error handler
+  next(createError(404));
 });
 
 app.use(function (err, req, res, next) {
