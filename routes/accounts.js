@@ -41,6 +41,52 @@ router.post('/login', passport.authenticate('local-login', {
     failureFlash: true
 }));
 
+// GET edit user page
+router.get('/edit/:id', authMiddleware.ensureAuthenticated, function (req, res) {
+    const userId = req.params.id;
+
+    User.findById(userId)
+        .then(user => {
+            if (!user) {
+                return res.status(404).send('User not found');
+            }
+
+            res.render('../views/accounts/edit', { user });
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send('Internal Server Error');
+        });
+});
+
+// POST update user
+router.post('/edit/:id', authMiddleware.ensureAuthenticated, function (req, res) {
+    const userId = req.params.id;
+
+    User.findByIdAndUpdate(userId, req.body)
+        .then(() => {
+            res.redirect('/accounts/signup');
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send('Internal Server Error');
+        });
+});
+
+// POST delete user
+router.post('/delete/:id', authMiddleware.ensureAuthenticated, function (req, res) {
+    const userId = req.params.id;
+
+    User.findByIdAndRemove(userId)
+        .then(() => {
+            res.redirect('/accounts/signup');
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send('Internal Server Error');
+        });
+});
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
