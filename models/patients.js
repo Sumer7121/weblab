@@ -16,6 +16,8 @@ const patientSchema = new Schema({
     TestType: { type: String, required: true },
     DoctorService: { type: String, required: true },
     LabName: { type: String, required: true },
+    LabName: { type: String, required: true },
+    Comment: { type: String, required: false },
     SampleStatus: { type: String, required: true },
 });
 

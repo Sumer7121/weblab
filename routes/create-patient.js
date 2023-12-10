@@ -34,6 +34,7 @@ router.post('/edit-patient', async function(req, res, next) {
       TestType,
       DoctorService,
       LabName,
+      Comment,
       SampleStatus,
     } = req.body;
 
@@ -55,6 +56,7 @@ router.post('/edit-patient', async function(req, res, next) {
         TestType,
         DoctorService,
         LabName,
+        Comment,
         SampleStatus,
       });
     } else {
@@ -73,6 +75,7 @@ router.post('/edit-patient', async function(req, res, next) {
         TestType,
         DoctorService,
         LabName,
+        Comment,
         SampleStatus,
       });
 

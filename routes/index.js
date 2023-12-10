@@ -37,6 +37,24 @@ router.post('/login', function(req, res) {
   const { username, password } = req.body;
 });
 
+// POST route to handle adding comments
+router.post('/add-comment/:id', async function(req, res, next) {
+  const patientId = req.params.id;
+  const comment = req.body.comment;
+
+  try {
+    const patient = await Patient.findById(patientId);
+    if (patient) {
+      patient.Comment = (patient.Comment ? patient.Comment + '\n' + comment : comment);
+      await patient.save();
+      console.log('Comment added successfully');
+    }
+    res.redirect('/');
+  } catch (err) {
+    next(err);
+  }
+});
+
 /* POST route to handle patient deletion with confirmation prompt */
 router.post('/delete-patient/:id', async function(req, res, next) {
   const patientId = req.params.id;
@@ -86,6 +104,7 @@ router.post('/edit-patient', async function(req, res, next) {
       TestType,
       DoctorService,
       LabName,
+      Comment,
       SampleStatus,
     } = req.body;
 
@@ -108,6 +127,7 @@ router.post('/edit-patient', async function(req, res, next) {
         TestType,
         DoctorService,
         LabName,
+        Comment,
         SampleStatus,
       });
     } else {
@@ -126,6 +146,7 @@ router.post('/edit-patient', async function(req, res, next) {
         TestType,
         DoctorService,
         LabName,
+        Comment,
         SampleStatus,
       });
 

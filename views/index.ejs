@@ -16,7 +16,7 @@
     <% } %>
     <a href="/accounts/login">Log Out</a>
   </div>
-  <div class="container">
+  <div>
     <h1 class="mt-4">Patient Details</h1>
     <table class="table table-striped">
       <thead>
@@ -33,6 +33,7 @@
           <th>Test Type</th>
           <th>Doctor Service</th>
           <th>Lab Name</th>
+          <th>Comment</th>
           <th>Sample Status</th>
         </tr>
       </thead>
@@ -51,6 +52,16 @@
             <td><%= patient.TestType %></td>
             <td><%= patient.DoctorService %></td>
             <td><%= patient.LabName %></td>
+            <td class="comment">
+              <form id="commentForm<%= patient._id %>" action="/add-comment/<%= patient._id %>" method="POST">
+                <div class="text-left">
+                  <pre><%= patient && patient.Comment ? patient.Comment : '' %></pre>
+                </div>
+                <textarea name="comment" rows="2" cols="25"></textarea>
+                <br>
+                <button type="submit" class="btn btn-sm btn-primary">Add Comment</button>
+              </form>
+            </td>
             <td>
               <!-- Adding conditional styling based on Sample Status -->
               <% if (patient.SampleStatus === 'reviewed') { %>
