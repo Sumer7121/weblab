@@ -59,6 +59,20 @@ router.get('/edit/:id', authMiddleware.ensureAuthenticated, function (req, res) 
         });
 });
 
+router.get('/accounts/csv-export', authMiddleware.ensureAuthenticated, async function (req, res, next) {
+    let users = await User.find();
+  
+    let csv = 'First Name,Last Name,Email,Role,Register Date,Password\n';
+  
+    for (let user of users) {
+      csv += `${user.firstName},${user.lastName},${user.email},${user.role},${user.registerDate},${user.password}\n`;
+    }
+
+    res.header('Content-Type', 'text/csv');
+    res.attachment('output.csv');
+    return res.send(csv);
+})
+
 // POST update user
 router.post('/edit/:id', authMiddleware.ensureAuthenticated, function (req, res) {
     const userId = req.params.id;
