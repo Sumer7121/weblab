@@ -17,6 +17,8 @@ mongoose.connect(process.env.MONGODB_URI, {
     process.exit(1);
   });
 
+mongoose.set('strictQuery', false);
+
 /* GET home page. */
 router.get('/', authMiddleware.ensureAuthenticated, async function(req, res, next) {
   try {

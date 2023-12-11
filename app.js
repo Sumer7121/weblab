@@ -8,7 +8,6 @@ require('dotenv').config();
 const passport = require('passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const createPatientRouter = require('./routes/create-patient');
@@ -32,6 +31,8 @@ mongoose
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
   });
+
+mongoose.set('strictQuery', false);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
