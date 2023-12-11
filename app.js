@@ -13,6 +13,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const createPatientRouter = require('./routes/create-patient');
 const accountsRouter = require('./routes/accounts');
+const csvExportRouter = require('./routes/csv-export'); // Add this line
 
 const app = express();
 
@@ -62,6 +63,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/create-patient', createPatientRouter);
 app.use('/accounts', accountsRouter);
+app.use('/csv-export', csvExportRouter); // Add this line
 
 app.use(function (req, res, next) {
   next(createError(404));

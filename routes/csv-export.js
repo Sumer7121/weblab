@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
 const User = require('../models/user');
 const authMiddleware = require('../middleware/auth');
 
-router.get('/csv-export', authMiddleware.ensureAuthenticated, async function (req, res, next) {
+router.get('/', authMiddleware.ensureAuthenticated, async function (req, res, next) {
   try {
     let users = await User.find();
-
     let csv = 'Register Date,Email,Password,First Name,Last Name,Role\n';
 
     for (let user of users) {
@@ -16,7 +14,8 @@ router.get('/csv-export', authMiddleware.ensureAuthenticated, async function (re
 
     const filename = 'users.csv';
 
-    res.attachment(filename);
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename="' + filename + '"');
     res.send(csv);
   } catch (error) {
     next(error);

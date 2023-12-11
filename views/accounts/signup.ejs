@@ -44,7 +44,7 @@
 
             <!-- Toggle button for switching between Signup and User Details -->
             <button class="btn btn-secondary mb-2" onclick="toggleSection('userDetailsSection')">User Details</button>
-
+            
             <!-- show any messages that come back with authentication -->
             <% if (message.length > 0) { %>
                 <div class="alert alert-danger"><%= message %></div>
@@ -85,7 +85,9 @@
     <div id="userDetailsSection" class="center-div" style="display: none;">
         <div class="container">
             <h1 class="mt-4">User Details</h1>
-            <a href="/accounts/csv-export" class="btn btn-primary">Export to CSV</a>
+            <br>
+            <a href="/csv-export" class="btn btn-primary">Export to Excel</a>
+            <br>
             <table class="table table-striped">
                 <thead>
                     <tr>

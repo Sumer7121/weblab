@@ -40,16 +40,16 @@ router.post('/login', function(req, res) {
 router.get('/index/csv-export', authMiddleware.ensureAuthenticated, async function (req, res, next) {
   let patients = await Patient.find();
 
-  let csv = 'CreatorId,CreatorName,FirstName,LastName,Birthdate,Zipcode,State,PhoneNumber,CreateDate,InsuranceType,TestType,DoctorService,LabName,Comment,SampleStatus\n';
+  let csv = 'CreatorName,FirstName,LastName,Birthdate,Zipcode,State,PhoneNumber,CreateDate,InsuranceType,TestType,DoctorService,LabName,Comment,SampleStatus\n';
 
   for (let patient of patients) {
-    csv += `${patient.CreatorId},${patient.CreatorName},${patient.FirstName},${patient.LastName},${patient.Birthdate},${patient.Zipcode},${patient.State},${patient.PhoneNumber},${patient.CreateDate},${patient.InsuranceType},${patient.TestType},${patient.DoctorService},${patient.LabName},${patient.Comment},${patient.SampleStatus}\n`;
+    csv += `${patient.CreatorName},${patient.FirstName},${patient.LastName},${patient.Birthdate},${patient.Zipcode},${patient.State},${patient.PhoneNumber},${patient.CreateDate},${patient.InsuranceType},${patient.TestType},${patient.DoctorService},${patient.LabName},${patient.Comment},${patient.SampleStatus}\n`;
   }
 
   res.header('Content-Type', 'text/csv');
-  res.attachment('output.csv');
+  res.attachment('patients.csv');
   return res.send(csv);
-})
+});
 
 // POST route to handle adding comments
 router.post('/add-comment/:id', async function(req, res, next) {

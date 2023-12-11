@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const authMiddleware = require('../middleware/auth');
-const User = require('../models/user'); // Assuming you have a User model
+const User = require('../models/user');
 
 // GET login page
 router.get('/login', function (req, res) {
@@ -59,19 +59,19 @@ router.get('/edit/:id', authMiddleware.ensureAuthenticated, function (req, res) 
         });
 });
 
-router.get('/accounts/csv-export', authMiddleware.ensureAuthenticated, async function (req, res, next) {
+router.get('/csv-export', authMiddleware.ensureAuthenticated, async function (req, res, next) {
     let users = await User.find();
   
-    let csv = 'First Name,Last Name,Email,Role,Register Date,Password\n';
+    let csv = 'Register Date,Email,Password,First Name,Last Name,Role\n';
   
     for (let user of users) {
-      csv += `${user.firstName},${user.lastName},${user.email},${user.role},${user.registerDate},${user.password}\n`;
+      csv += `${user.registerDate},${user.email},${user.password},${user.firstName},${user.lastName},${user.role}\n`;
     }
-
+  
     res.header('Content-Type', 'text/csv');
-    res.attachment('output.csv');
+    res.attachment('users.csv');
     return res.send(csv);
-})
+});
 
 // POST update user
 router.post('/edit/:id', authMiddleware.ensureAuthenticated, function (req, res) {
